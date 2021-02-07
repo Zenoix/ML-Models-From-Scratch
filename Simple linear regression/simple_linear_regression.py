@@ -9,22 +9,15 @@ class SimpleLinearRegression:
         self.bias = None
         self.verbose = verbose
 
-    def __str__(self):
-        output = (
-            f"Simple Linear Regression Model: "
-            f"learning rate={self.l_rate}, iterations={self.iters}"
-        )
-        return output
-
     def fit(self, X, y):
         self.weight = 0
         self.bias = 0
-        self.N = len(X)
+        N = len(X)
 
         for iteration in range(self.iters):
             y_pred = self.weight * X + self.bias
-            dw = np.sum(-2*X*(y-y_pred))/self.N
-            db = np.sum(-2*(y-y_pred))/self.N
+            dw = (1 / N) * np.dot(X.T, (y_pred - y))
+            db = (1 / N) * np.sum(y_pred - y)
             self.weight -= self.l_rate * dw
             self.bias -= self.l_rate * db
 
@@ -50,3 +43,10 @@ class SimpleLinearRegression:
 
     def mse(self, y_true, y_hat):
         return np.mean((y_true - y_hat) ** 2)
+
+    def __str__(self):
+        output = (
+            f"Simple Linear Regression Model: "
+            f"learning rate={self.l_rate}, iterations={self.iters}"
+        )
+        return output
