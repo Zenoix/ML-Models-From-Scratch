@@ -2,7 +2,7 @@ import numpy as np
 
 
 class SimpleLinearRegression:
-    def __init__(self, learning_rate=0.001, iterations=2000, verbose=False):
+    def __init__(self, learning_rate=0.01, iterations=1000, verbose=False):
         self.l_rate = learning_rate
         self.iters = iterations
         self.weight = None
@@ -19,14 +19,16 @@ class SimpleLinearRegression:
     def fit(self, X, y):
         self.weight = 0
         self.bias = 0
+        self.N = len(X)
 
         for iteration in range(self.iters):
-            y_pred = self.weight*X+self.bias
-            dw = np.mean(-2 * X * (y - y_pred))
-            db = np.mean(-2 * (y - y_pred))
+            y_pred = self.weight * X + self.bias
+            dw = np.sum(-2*X*(y-y_pred))/self.N
+            db = np.sum(-2*(y-y_pred))/self.N
             self.weight -= self.l_rate * dw
             self.bias -= self.l_rate * db
-            if self.verbose and (not iteration % 10 or
+
+            if self.verbose and (not iteration % 100 or
                                  iteration == self.iters - 1):
                 info = (
                     f"Iteration {iteration}: "
@@ -35,7 +37,7 @@ class SimpleLinearRegression:
                 print(info)
 
     def predict(self, X):
-        pass
+        return self.weight * X + self.bias
 
     def params(self):
         return {"Weight": self.weight, "Bias": self.bias}
@@ -47,7 +49,4 @@ class SimpleLinearRegression:
         return self.bias
 
     def mse(self, y_true, y_hat):
-        return np.mean((y_true - self.weight*y_hat + self.bias) ** 2)
-
-
-a = SimpleLinearRegression()
+        return np.mean((y_true - y_hat) ** 2)
