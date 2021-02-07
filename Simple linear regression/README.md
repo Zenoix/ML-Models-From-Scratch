@@ -1,4 +1,4 @@
-# Simple Linear Regression
+# Simple Linear Regression (Currently only works if grad_descent is set to False)
 
 ## Resources used
 - https://en.wikipedia.org/wiki/Simple_linear_regression (Concept explanation and some of the maths behind it)
