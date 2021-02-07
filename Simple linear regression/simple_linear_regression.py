@@ -16,8 +16,9 @@ class SimpleLinearRegression:
 
         for iteration in range(self.iters):
             y_pred = self.weight * X + self.bias
-            dw = (1 / N) * np.dot(X.T, (y_pred - y))
+            dw = (1 / N) * np.sum(X * (y_pred - y))
             db = (1 / N) * np.sum(y_pred - y)
+
             self.weight -= self.l_rate * dw
             self.bias -= self.l_rate * db
 
