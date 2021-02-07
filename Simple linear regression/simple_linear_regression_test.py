@@ -28,4 +28,3 @@ pred_line = regressor.predict(X)
 plt.scatter(X, y)
 plt.plot(X, pred_line, color='black', linewidth=2)
 plt.show()
-
