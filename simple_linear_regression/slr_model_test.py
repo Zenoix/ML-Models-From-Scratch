@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import random
 
 # import the model
-from simple_linear_regression import SimpleLinearRegression
+from slr_model import SimpleLinearRegression
 
 # generate linear data
 X, y, coef = datasets.make_regression(
