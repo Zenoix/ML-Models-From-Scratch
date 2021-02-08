@@ -4,23 +4,36 @@ import numpy as np
 class SimpleLinearRegression:
     def __init__(self, learning_rate=0.01, iterations=1000,
                  grad_descent=True, verbose=False):
+        # initialise hyperparameters
         self.l_rate = learning_rate
         self.iters = iterations
-        self.weight = None
-        self.bias = None
         self.grad_descent = grad_descent
         self.verbose = verbose
 
     def fit(self, X, y):
+        # initialise parameters
         self.weight = 0
         self.bias = 0
-        N = len(X)
+
+        # check shape of X
+        if X.ndim > 1:
+            if X.shape[1] != 1 or X.ndim > 2:
+                raise ValueError("Feature shape must be (N,) or (N, 1)")
+            else:
+                # if X.shape in form (N, 1), convert to 1d array
+                X = X.T[0]
+
+        # Using gradient descent
         if self.grad_descent:
             for iteration in range(self.iters):
+                # prediction with current parameters
                 y_pred = self.weight * X + self.bias
-                dw = (1 / N) * np.sum(X * (y_pred - y))
-                db = (1 / N) * np.sum(y_pred - y)
 
+                # gradient descent differentiation
+                dw = np.mean(X * (y_pred - y))
+                db = np.mean(y_pred - y)
+
+                # update rules
                 self.weight -= self.l_rate * dw
                 self.bias -= self.l_rate * db
 
@@ -31,8 +44,10 @@ class SimpleLinearRegression:
                         f"Weight={self.weight}, Bias={self.bias}"
                     )
                     print(info)
+
+        # Without gradient descent
         else:
-            X = X.T[0]
+            N = len(X)
             y_mean = y.mean()
             X_mean = X.mean()
             sum_Xy = (y * X).sum()
