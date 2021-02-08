@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import random
 
 # import the model
-from simple_linear_regression import SimpleLinearRegression
+from slr_model import SimpleLinearRegression
 
 # generate linear data
 X, y, coef = datasets.make_regression(
@@ -23,7 +23,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2)
 
 # create the model
-regressor = SimpleLinearRegression(grad_descent=False)
+regressor = SimpleLinearRegression()
 
 # train the model
 regressor.fit(X_train, y_train)
