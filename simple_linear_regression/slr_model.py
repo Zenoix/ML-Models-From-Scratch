@@ -9,6 +9,8 @@ class SimpleLinearRegression:
         self.iters = iterations
         self.grad_descent = grad_descent
         self.verbose = verbose
+        self.weight = None
+        self.bias = None
 
     def fit(self, X, y):
         # initialise parameters
