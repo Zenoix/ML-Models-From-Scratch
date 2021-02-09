@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class SimpleLinearRegression:
+class LinearRegression:
     def __init__(self, learning_rate=0.01, iterations=1000,
                  grad_descent=True, verbose=False):
         # initialise hyperparameters
@@ -16,14 +16,6 @@ class SimpleLinearRegression:
         # initialise parameters
         self.weight = 0
         self.bias = 0
-
-        # check shape of X
-        if X.ndim > 1:
-            if X.shape[1] != 1 or X.ndim > 2:
-                raise ValueError("Feature shape must be (N,) or (N, 1)")
-            else:
-                # if X.shape in form (N, 1), convert to 1d array
-                X = X.T[0]
 
         # Using gradient descent
         if self.grad_descent:
