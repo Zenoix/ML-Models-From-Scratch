@@ -10,9 +10,20 @@ class LinearRegression:
         self.weight = None
         self.bias = None
 
+    def _normalize_features(self, X):
+        # mean normalization
+        for feature in X.T:
+            fmean = np.mean(feature)
+            frange = np.amax(feature) - np.amin(feature)
+            feature -= fmean
+            feature /= frange
+
+        return X
+
     def fit(self, X, y):
         # initialise parameters
         n_samples, n_features = X.shape
+        X = self._normalize_features(X)
         self.weight = np.zeros(n_features)
         self.bias = 0
 
