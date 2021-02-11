@@ -38,7 +38,7 @@ class LinearRegression:
                 print(info)
 
     def predict(self, X):
-        return self.weight * X + self.bias
+        return np.dot(self.weight, X) + self.bias
 
     def params(self):
         return {"Weight": self.weight, "Bias": self.bias}
