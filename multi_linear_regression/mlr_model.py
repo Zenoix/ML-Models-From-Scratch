@@ -66,7 +66,7 @@ class LinearRegression:
 
     def __str__(self):
         output = (
-            f"Simple Linear Regression Model: "
+            f"Linear Regression Model: "
             f"learning rate={self.l_rate}, iterations={self.iters}"
         )
         return output
