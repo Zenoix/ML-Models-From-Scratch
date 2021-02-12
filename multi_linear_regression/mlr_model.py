@@ -7,7 +7,7 @@ class LinearRegression:
         self.l_rate = learning_rate
         self.iters = iterations
         self.verbose = verbose
-        self.weight = None
+        self.weights = None
         self.bias = None
 
     def _normalize_features(self, X):
@@ -24,16 +24,16 @@ class LinearRegression:
         # initialise parameters
         n_samples, n_features = X.shape
         X = self._normalize_features(X)
-        self.weight = np.zeros(n_features)
+        self.weights = np.zeros(n_features)
         self.bias = 0
 
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
-            y_pred = self.weight * X + self.bias
+            y_pred = np.dot(self.weights, X) + self.bias
 
             # gradient descent differentiation
-            dw = np.mean(X * (y_pred - y))
+            dw = np.mean(np.dot(X * (y_pred - y)))
             db = np.mean(y_pred - y)
 
             # update rules
@@ -44,18 +44,18 @@ class LinearRegression:
                                  iteration == self.iters - 1):
                 info = (
                     f"Iteration {iteration}: "
-                    f"Weight={self.weight}, Bias={self.bias}"
+                    f"Weight={self.weights}, Bias={self.bias}"
                 )
                 print(info)
 
     def predict(self, X):
-        return np.dot(self.weight, X) + self.bias
+        return np.dot(self.weights, X) + self.bias
 
     def params(self):
-        return {"Weight": self.weight, "Bias": self.bias}
+        return {"Weight": self.weights, "Bias": self.bias}
 
     def coef(self):
-        return self.weight
+        return self.weights
 
     def intercept(self):
         return self.bias
