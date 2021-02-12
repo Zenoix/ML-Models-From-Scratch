@@ -23,11 +23,11 @@ X_train, X_test, y_train, y_test = train_test_split(
 
 
 # %%
-lr = LinearRegression(verbose=True)
+lr = LinearRegression()
 lr.fit(X_train, y_train)
 
 
 # %%
-print(lr.params())
 
+print(lr.weights)
 print(coef)
