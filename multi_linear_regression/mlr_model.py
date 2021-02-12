@@ -2,7 +2,7 @@ import numpy as np
 
 
 class LinearRegression:
-    def __init__(self, learning_rate=0.001, iterations=1000000, verbose=False):
+    def __init__(self, learning_rate=0.001, iterations=1000, verbose=False):
         # initialise hyperparameters
         self.l_rate = learning_rate
         self.iters = iterations
@@ -29,11 +29,12 @@ class LinearRegression:
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
-            y_pred = np.dot(X, self.weights) + self.bias
+            y_pred = self.predict(X)
+            error = y_pred - y
 
             # gradient descent differentiation
-            dw = np.dot(X.T, (y_pred - y)) / n_samples
-            db = np.mean(y_pred - y)
+            dw = np.dot(X.T, error) / n_samples
+            db = np.mean(error)
 
             # update rules
             self.weights -= self.l_rate * dw
