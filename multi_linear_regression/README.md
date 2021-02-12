@@ -1,13 +1,5 @@
 # Multiple Linear Regression (In progress, this readme is not correct)
-
 ## Resources used
-- https://en.wikipedia.org/wiki/Simple_linear_regression (Concept explanation and some of the maths behind it)
-- https://medium.com/towards-artificial-intelligence/linear-regression-complete-derivation-406f2859a09a (Math behind the non gradient descent method)
-- https://ml-cheatsheet.readthedocs.io/en/latest/linear_regression.html# (Concept explanations and gradient descent maths)
-- https://ml-cheatsheet.readthedocs.io/en/latest/gradient_descent.html (Gradient descent explanation and maths)
-
-### Bad animation lol
-![Model in action](https://cdn.discordapp.com/attachments/644342031279194112/808173400161910794/fsd.gif)
 
 ## How to use the model
 
