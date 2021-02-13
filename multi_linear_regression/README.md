@@ -1,8 +1,10 @@
 # Multivariate Linear Regression
 ## Resources used
 
-## How to use the model
+- https://ml-cheatsheet.readthedocs.io/en/latest/linear_regression.html# (Concepts and some of the maths)
+- https://en.wikipedia.org/wiki/Linear_regression#Simple_and_multiple_linear_regression (Concepts)
 
+## How to use the model
 #### Import the class
 ```py
 from mlr_model import LinearRegression
