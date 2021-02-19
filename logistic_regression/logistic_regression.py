@@ -10,6 +10,9 @@ class Logistic_Regression:
         self.weights = None
         self.bias = None
 
+    def _sigmoid_func(self, X):
+        return 1 / (1 + np.exp(-X))
+
     def __str__(self):
         output = (
             f"Logistic Regression Model: "
