@@ -20,7 +20,7 @@ class Logistic_Regression:
         for iteration in range(self.iters):
             # prediction with current parameters
             y_pred = self._linear(X)
-            
+
             # TODO check if this derivative is correct for logistic reg
             derivative = np.dot(X.T, y_pred - y)
 
