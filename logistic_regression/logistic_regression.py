@@ -10,6 +10,26 @@ class Logistic_Regression:
         self.weights = None
         self.bias = None
 
+    def fit(self, X, y):
+        # initialise parameters
+        n_samples, n_features = X.shape
+        self.weights = np.zeros(n_features)
+        self.bias = 0
+
+        # Using gradient descent
+        for iteration in range(self.iters):
+            # prediction with current parameters
+            y_pred = self.predict(X)
+            
+            # TODO cross entropy differentiation
+
+            # update rules
+            self.weights -= self.l_rate * dw
+            self.bias -= self.l_rate * db
+
+    def predict(self, X):
+        return np.dot(X, self.weights) + self.bias
+
     def _sigmoid_func(self, X):
         return 1 / (1 + np.exp(-X))
 
