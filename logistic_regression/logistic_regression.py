@@ -19,15 +19,23 @@ class Logistic_Regression:
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
-            y_pred = self.predict(X)
+            y_pred = self._linear(X)
             
-            # TODO cross entropy differentiation
+            # TODO check if this derivative is correct for logistic reg
+            derivative = np.dot(X.T, y_pred - y)
 
             # update rules
-            self.weights -= self.l_rate * dw
-            self.bias -= self.l_rate * db
+            self.weights -= self.l_rate * derivative
+            self.bias -= self.l_rate * derivative
 
     def predict(self, X):
+        y_pred = self._linear(X)
+        y_pred = self._sigmoid_func(y_pred)
+        y_pred[y_pred >= 0.5] = 1
+        y_pred[y_pred < 0.5] = 0
+        return y_pred
+
+    def _linear(self, X):
         return np.dot(X, self.weights) + self.bias
 
     def _sigmoid_func(self, X):
