@@ -1,7 +1,7 @@
 import numpy as np
 
 
-class LogisticRegression:
+class Logistic_Regression:
     def __init__(self, learning_rate=0.01, iterations=1000, verbose=False):
         # initialise hyperparameters
         self.l_rate = learning_rate
@@ -10,31 +10,24 @@ class LogisticRegression:
         self.weights = None
         self.bias = None
 
-    def _normalize_features(self, X):
-        # mean normalization
-        for feature in X.T:
-            mean = np.mean(feature)
-            std = np.std(feature)
-            feature -= mean
-            feature /= std
-        return X
-
     def fit(self, X, y):
         # initialise parameters
-        n_samples, n_features = X.shape
-        X = self._normalize_features(X)
+        _, n_features = X.shape
         self.weights = np.zeros(n_features)
         self.bias = 0
+
+        print(X.shape)
+        print(self.weights.shape)
 
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
-            y_pred = self.predict(X)
+            y_pred = np.dot(X.T, self.weights) + self.bias
             loss = y_pred - y
 
             # gradient descent differentiation
-            dw = np.dot(X.T, loss) / n_samples
-            db = np.mean(loss)
+            dw = np.dot(X, loss)
+            db = np.dot(X, loss)
 
             # update rules
             self.weights -= self.l_rate * dw
@@ -49,15 +42,18 @@ class LogisticRegression:
                 print(info)
 
     def predict(self, X):
-        X = self._normalize_features(X)
-        return np.dot(X, self.weights) + self.bias
-
-    def params(self):
-        return {"Weight": self.weights, "Bias": self.bias}
+        y_pred = self._linear(X)
+        y_pred = self._sigmoid_func(y_pred)
+        y_pred[y_pred >= 0.5] = 1
+        y_pred[y_pred < 0.5] = 0
+        return y_pred
 
     def accuracy(self, y_true, y_hat):
         diff = y_hat - y_true
         return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
+
+    def _sigmoid_func(self, X):
+        return 1 / (1 + np.exp(-X))
 
     def __str__(self):
         output = (
