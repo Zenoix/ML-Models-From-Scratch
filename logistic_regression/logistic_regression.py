@@ -55,14 +55,9 @@ class LogisticRegression:
     def params(self):
         return {"Weight": self.weights, "Bias": self.bias}
 
-    def coef(self):
-        return self.weights
-
-    def intercept(self):
-        return self.bias
-
-    def mse(self, y_true, y_hat):
-        return np.mean((y_true - y_hat) ** 2) / 2
+    def accuracy(self, y_true, y_hat):
+        diff = y_hat - y_true
+        return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
 
     def __str__(self):
         output = (
