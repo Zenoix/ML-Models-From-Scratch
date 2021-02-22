@@ -35,8 +35,12 @@ class Logistic_Regression:
         y_pred[y_pred < 0.5] = 0
         return y_pred
 
+    def score(y_pred, y_true):
+        diff = y_pred - y_true
+        return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
+
     def _linear(self, X):
-        return np.dot(X, self.weights) + self.bias
+        return np.dot(X.T, self.weights) + self.bias
 
     def _sigmoid_func(self, X):
         return 1 / (1 + np.exp(-X))
