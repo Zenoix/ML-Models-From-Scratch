@@ -12,22 +12,20 @@ class Logistic_Regression:
 
     def fit(self, X, y):
         # initialise parameters
-        _, n_features = X.shape
+        n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
         self.bias = 0
-
-        print(X.shape)
-        print(self.weights.shape)
 
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
             y_pred = np.dot(X.T, self.weights) + self.bias
+            y_pred = self._sigmoid_func(y_pred)
             loss = y_pred - y
 
             # gradient descent differentiation
-            dw = np.dot(X, loss)
-            db = np.dot(X, loss)
+            dw = (1 / n_samples) * np.dot(X, loss)
+            db = (1 / n_samples) * np.sum(loss)
 
             # update rules
             self.weights -= self.l_rate * dw
