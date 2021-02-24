@@ -1,5 +1,5 @@
 import numpy as np
-
+import scipy
 
 class Logistic_Regression:
     def __init__(self, learning_rate=0.01, iterations=1000, verbose=False):
@@ -53,7 +53,7 @@ class Logistic_Regression:
         return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
 
     def _sigmoid_func(self, X):
-        return 1 / (1 + np.exp(-X))
+        return scipy.special.expit(X)
 
     def __str__(self):
         output = (
