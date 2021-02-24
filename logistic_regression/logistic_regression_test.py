@@ -13,3 +13,7 @@ X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=123)
 
 log_reg.fit(X_train, y_train)
+
+y_hat = log_reg.predict(X_test)
+
+print(log_reg.accuracy(y_test, y_hat))
