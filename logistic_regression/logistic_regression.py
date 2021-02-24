@@ -15,6 +15,8 @@ class Logistic_Regression:
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
         self.bias = 0
+        print(X.shape)
+        print(self.weights.shape)
 
         # Using gradient descent
         for iteration in range(self.iters):
@@ -24,7 +26,7 @@ class Logistic_Regression:
             loss = y_pred - y
 
             # gradient descent differentiation
-            dw = (1 / n_samples) * np.dot(X, loss)
+            dw = (1 / n_samples) * np.dot(X.T, loss)
             db = (1 / n_samples) * np.sum(loss)
 
             # update rules
