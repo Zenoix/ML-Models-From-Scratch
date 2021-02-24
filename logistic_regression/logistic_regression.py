@@ -20,7 +20,7 @@ class Logistic_Regression:
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
-            linear = np.dot(X, self.weights) + self.bias
+            linear = self._linear(X)
             y_pred = self._sigmoid_func(linear)
             loss = y_pred - y
 
@@ -41,8 +41,8 @@ class Logistic_Regression:
                 print(info)
 
     def predict(self, X):
-        y_pred = self._linear(X)
-        y_pred = self._sigmoid_func(y_pred)
+        linear = self._linear(X)
+        y_pred = self._sigmoid_func(linear)
         y_pred[y_pred >= 0.5] = 1
         y_pred[y_pred < 0.5] = 0
         return y_pred
@@ -50,6 +50,9 @@ class Logistic_Regression:
     def accuracy(self, y_true, y_hat):
         diff = y_hat - y_true
         return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
+
+    def _linear(self, X):
+        return np.dot(X, self.weights) + self.bias
 
     def _sigmoid_func(self, X):
         return scipy.special.expit(X)
