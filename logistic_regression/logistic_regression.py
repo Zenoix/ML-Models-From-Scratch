@@ -19,8 +19,8 @@ class Logistic_Regression:
         # Using gradient descent
         for iteration in range(self.iters):
             # prediction with current parameters
-            y_pred = np.dot(X.T, self.weights) + self.bias
-            y_pred = self._sigmoid_func(y_pred)
+            linear = np.dot(X, self.weights) + self.bias
+            y_pred = self._sigmoid_func(linear)
             loss = y_pred - y
 
             # gradient descent differentiation
