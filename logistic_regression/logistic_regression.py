@@ -1,6 +1,7 @@
 import numpy as np
 import scipy
 
+
 class Logistic_Regression:
     def __init__(self, learning_rate=0.01, iterations=1000, verbose=False):
         # initialise hyperparameters
@@ -15,8 +16,6 @@ class Logistic_Regression:
         n_samples, n_features = X.shape
         self.weights = np.zeros(n_features)
         self.bias = 0
-        print(X.shape)
-        print(self.weights.shape)
 
         # Using gradient descent
         for iteration in range(self.iters):
