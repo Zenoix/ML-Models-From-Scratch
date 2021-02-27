@@ -1,10 +1,6 @@
 # import libraries
 from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
-import numpy as np
-import scipy
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 # import the logistic regression model
 from logistic_regression import Logistic_Regression
