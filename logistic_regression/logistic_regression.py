@@ -3,7 +3,7 @@ import numpy as np
 import scipy
 
 
-class Logistic_Regression:
+class LogisticRegression:
     def __init__(self, learning_rate=0.01, iterations=1000, verbose=False):
         # initialise hyperparameters
         self.l_rate = learning_rate

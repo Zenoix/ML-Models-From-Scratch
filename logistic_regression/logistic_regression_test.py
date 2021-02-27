@@ -3,11 +3,11 @@ from sklearn.datasets import load_breast_cancer
 from sklearn.model_selection import train_test_split
 
 # import the logistic regression model
-from logistic_regression import Logistic_Regression
+from logistic_regression import LogisticRegression
 
 # load data and model
 data = load_breast_cancer(as_frame=True)
-log_reg = Logistic_Regression()
+log_reg = LogisticRegression()
 
 # obtain features and targets
 X = data["data"]
