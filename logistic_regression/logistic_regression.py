@@ -1,3 +1,4 @@
+# import libraries
 import numpy as np
 import scipy
 
@@ -43,6 +44,8 @@ class Logistic_Regression:
     def predict(self, X):
         linear = self._linear(X)
         y_pred = self._sigmoid_func(linear)
+
+        # label the binary classes
         y_pred[y_pred >= 0.5] = 1
         y_pred[y_pred < 0.5] = 0
         return y_pred
@@ -55,6 +58,7 @@ class Logistic_Regression:
         return np.dot(X, self.weights) + self.bias
 
     def _sigmoid_func(self, X):
+        # return sigmoid function on each X value
         return scipy.special.expit(X)
 
     def __str__(self):
