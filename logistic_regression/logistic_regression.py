@@ -50,6 +50,15 @@ class LogisticRegression:
         y_pred[y_pred < 0.5] = 0
         return y_pred
 
+    def params(self):
+        return {"Weight": self.weights, "Bias": self.bias}
+
+    def coef(self):
+        return self.weights
+
+    def intercept(self):
+        return self.bias
+
     def accuracy(self, y_true, y_hat):
         diff = y_hat - y_true
         return 1.0 - (float(np.count_nonzero(diff)) / len(diff))
