@@ -8,11 +8,11 @@
 ## How to use the model
 #### Import the class
 ```py
-from mlr_model import LinearRegression
+from logistic_regression import LogisticRegression
 ```
 #### Create the model class
 ```py
-lr = LinearRegression()
+log_reg = LogisticRegression()
 ```
 ##### Possible arguments:
 - `learning_rate` which controls how much the weight and bias changes (default set to 0.01)
@@ -21,13 +21,13 @@ lr = LinearRegression()
 
 #### Train the model
 ```py
-lr.fit(X_train, y_train)
+log_reg.fit(X_train, y_train)
 ```
 Trains the model and adjusts the weights and bias to fit the data given. Returns nothing
 
 #### Make predictions
 ```py
-lr.predict(X)
+y_hat = log_reg.predict(X)
 ```
 Returns a numpy array of predicted values.
 
@@ -36,30 +36,30 @@ Returns a numpy array of predicted values.
 
 #### Get the parameters of the model
 ```py
-lr.params()
+log_reg.params()
 ```
-Returns a dictionary of the current weights and bias of the model.
+Returns a dictionary of the current weights and bias of the model before the logistic activation.
 
 #### Get the coefficient of the data
 ```py
-lr.coef()
+log_reg.coef()
 ```
-Returns the coefficients of the data/weights of the model.
+Returns the coefficients of the data/weights of the model before the logistic activation.
 
 #### Get the intercept of the data
 ```py
-lr.intercept()
+log_reg.intercept()
 ```
-Returns the y-intercept of the data/bias of the model.
+Returns the y-intercept of the data/bias of the model before the logistic activation.
 
 #### Get the mean squared error
 ```py
-lr.mse()
+log_reg.accracy()
 ```
-Returns the mean squared error of the model.
+Returns the percentage of values correctly predicted.
 
 #### Print out the hyperparamters of the model
 ```py
-print(lr)
+print(log_reg)
 ```
 Prints out the learning rate and number of iterations.
